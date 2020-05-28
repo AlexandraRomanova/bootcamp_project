@@ -22,6 +22,14 @@
     url(/fonts/GothamPro-Bold.ttf) format("truetype"),
     url(/fonts/GothamPro-Bold.woff) format("woff");
   font-style: normal;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Coustard Regular";
+  src: url(/fonts/Coustard-Regular.ttf) format("truetype");
+  font-style: normal;
+  font-weight: normal;
 }
 * {
   padding: 0;
@@ -340,22 +348,121 @@ div.ant-carousel-arrow-right {
 }
 .s4_desc {
   display: block;
+  margin: 0 20px;
   text-align: center;
   font-size: 18px;
   font-family: "Gothem Pro";
   font-weight: bold;
+  line-height: 27px;
   padding-top: 122px;
   position: relative;
 }
 .s4_desc::before {
   content: "\201D";
   position: absolute;
-  width: 55px;
-  height: 35px;
-  font-size: 56px;
+  font-size: 118px;
   color: rgb(247, 223, 8);
-  top: ;
-  left: ;
+  font-family: "Coustard Regular";
+  top: 48%;
+  left: 38%;
+}
+.s4_list {
+  display: flex;
+  flex-flow: column;
+  margin: 0 20px;
+  padding-left: 55px;
+  font-family: "OpenSans";
+  font-size: 14px;
+  line-height: 26px;
+  color: #6c6e79;
+  padding-top: 44px;
+  padding-bottom: 66px;
+  position: relative;
+}
+.s4_list::before {
+  content: "";
+  position: absolute;
+  display: block;
+  border: 1px solid rgb(247, 223, 8);
+  height: 174px;
+  top: 50px;
+  left: 28px;
+}
+
+/* стили секции 5 */
+.s5 {
+  background-color: #303030;
+}
+.s5_list {
+  display: flex;
+  flex-flow: column;
+  margin: 0 20px;
+  padding-top: 72px;
+}
+.s5_list li {
+  padding-left: 75px;
+  font-family: "OpenSans";
+  font-size: 14px;
+  line-height: 24px;
+  color: #a4a4a4;
+  padding-bottom: 30px;
+  position: relative;
+}
+.list-notitle li::before,
+.list-special li::before,
+.list-outside li::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-image: url(../images/icons/s5_icon.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  top: 1px;
+  left: 30px;
+}
+
+.s5_list-title {
+  margin: 0 20px;
+  padding-left: 30px;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-family: "OpenSans";
+  font: 18px;
+  font-weight: bold;
+  line-height: 28px;
+  position: relative;
+}
+.s5_list-title::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgb(247, 223, 8);
+  width: 40px;
+  top: 73px;
+  left: 32px;
+}
+.contacts li {
+  position: relative;
+}
+.contacts li:last-child::before {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background-image: url(../images/icons/icon_viber);
+  background-repeat: no-repeat;
+  background-position: center;
+  left: 46px;
+}
+.nav_list-item a:hover,
+.nav_list-item a:focus {
+  color: red;
+  font-size: large;
+}
+.contacts a:hover,
+.contacts a:focus {
+  color: red;
+  font-size: large;
 }
 
 /* стили футера */
