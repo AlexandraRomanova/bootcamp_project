@@ -429,7 +429,7 @@ div.ant-carousel-arrow-right {
 .s5 {
   display: flex;
   flex-flow: column;
-  align-items: flex-start;
+  align-items: center;
   background-color: #303030;
 }
 .s5_list {
@@ -493,6 +493,9 @@ div.ant-carousel-arrow-right {
   background-position: center;
   left: 33px;
   top: 25px;
+}
+.contacts a {
+  color: #ffffff;
 }
 .contacts a:hover,
 .contacts a:focus {
@@ -610,7 +613,7 @@ footer {
   }
   .s2_list {
     flex-flow: row;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 0 40px;
     padding-bottom: 87px;
   }
@@ -747,5 +750,162 @@ footer {
     font-size: 16px;
     font-weight: bold;
     padding: 22px 0;
+  }
+}
+
+/* стили для DESKTOP */
+@media (min-width: 1280px) {
+  .container {
+    min-width: 1280px;
+  }
+
+  /* стили header */
+  .header_nav {
+    margin: 0 60px;
+  }
+  .logo {
+    font-size: 24px;
+  }
+  .nav_list-item a {
+    font-size: 24px;
+  }
+  .nav_list-item:last-child::before {
+    top: 3px;
+    left: -30px;
+  }
+
+  /* сили s1 */
+  .s1_title {
+    padding: 229px 0 24px 159px;
+    font-size: 72px;
+    margin: 0;
+  }
+  .s1_list {
+    padding-left: 159px;
+    padding-bottom: 98px;
+    font-size: 24px;
+    margin: 0;
+  }
+  .s1_list-item {
+    padding-left: 29px;
+    padding-bottom: 14px;
+  }
+  .s1_list-item::before {
+    left: 0;
+    top: 10px;
+  }
+
+  /* стили s2 */
+  .s2_title {
+    font-size: 44px;
+    padding-top: 78px;
+  }
+  .s2_list {
+    width: 768px;
+    padding-top: 44px;
+    padding-bottom: 90px;
+  }
+  .s2_list-item {
+    width: 178px;
+    height: 164px;
+  }
+  .s2_list-item::before {
+    top: -40px;
+    left: 46px;
+  }
+  .s2_list-item::before:hover {
+    left: 36px;
+  }
+
+  /* стили s3 */
+  .ant-carousel-element img {
+    width: 570px;
+    height: 344px;
+  }
+  .ant-carousel-element {
+    width: 570px;
+    margin: 0 25px;
+    padding: 85px 0;
+  }
+  .ant-carousel-hider {
+    width: 1280px;
+  }
+  div.ant-carousel-arrow-left {
+    left: 20px;
+  }
+  div.ant-carousel-arrow-right {
+    right: 20px;
+  }
+  /* поменять фон */
+
+  /* стили s4 */
+  .s4_desc {
+    font-size: 34px;
+    line-height: 40px;
+    margin: 0 60px;
+    padding-left: 250px;
+    text-align: left;
+  }
+  .s4_desc::before {
+    font-size: 236px;
+    top: 102%;
+    left: 10%;
+  }
+
+  /* стили s5 */
+  .s5 {
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: auto;
+    padding: 76px 80px 74px 237px;
+  }
+  .s5_list li,
+  .s5_list-title,
+  .s5_list {
+    width: 246px;
+  }
+  .s5_list,
+  .s5 div {
+    padding-bottom: 25px;
+  }
+  .s5_list-title::after {
+    top: 71%;
+    left: 0px;
+  }
+
+  .contacts {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+    width: auto;
+  }
+  .contacts li {
+    width: auto;
+    padding: 0;
+  }
+  .contacts li:first-child {
+    position: relative;
+    padding-right: 30px;
+  }
+  .contacts li:first-child::after {
+    content: "";
+    position: absolute;
+    border: 1px solid #454545;
+    height: 30px;
+    top: -2px;
+    right: 11px;
+  }
+  .contacts li:last-child {
+    padding-left: 26px;
+  }
+  .contacts li:last-child::before {
+    left: 0;
+  }
+  .contacts a {
+    margin: 0;
+  }
+  .contacts p {
+    padding-left: 10px;
   }
 }
