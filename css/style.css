@@ -9,9 +9,9 @@
 
 @font-face {
   font-family: "OpenSans Bold";
-  src: url(/fonts/OpenSans-Bold.eot) format("embedded-opentype"),
-    url(/fonts/OpenSans-Bold.ttf) format("truetype"),
-    url(/fonts/OpenSans-Bold.woff) format("woff");
+  src: url(/fonts/OpenSans-ExtraBold.eot) format("embedded-opentype"),
+    url(/fonts/OpenSans-ExtraBold.ttf) format("truetype"),
+    url(/fonts/OpenSans-ExtraBold.woff) format("woff");
   font-style: normal;
   font-weight: bold;
 }
@@ -31,9 +31,11 @@
   font-style: normal;
   font-weight: normal;
 }
+/* высота по умолчанию */
 * {
   margin: 0;
   box-sizing: border-box;
+  line-height: inherit;
 }
 .container {
   min-width: 320px;
@@ -41,10 +43,20 @@
 }
 
 /* стили хэдэра */
+.header_wrapper {
+  position: fixed;
+  background: #fff;
+  z-index: 99;
+  width: 100%;
+  top: 15px;
+}
 .header_nav {
   display: flex;
-  flex-flow: column;
+  flex-flow: row wrap;
+  justify-content: space-between;
   align-items: center;
+  margin: 0 20px;
+  padding: 20px 0;
 }
 a {
   text-decoration: none;
@@ -55,12 +67,12 @@ ul {
 }
 
 .logo {
+  display: flex;
   text-transform: capitalize;
-  color: #000000;
-  padding-top: 30px;
+  color: black;
+  padding-left: 50px;
   font-family: "OpenSans";
-  font-size: 16px;
-  padding-bottom: 24px;
+  font-size: 12px;
   position: relative;
 }
 
@@ -69,25 +81,25 @@ ul {
   position: absolute;
   width: 46px;
   height: 46px;
+  background-color: #ffe100;
   background-image: url(../images/icons/icon_sofa);
   background-repeat: no-repeat;
-  background-color: rgb(247, 223, 8);
   background-position: center;
   border-radius: 50%;
-  top: 20px;
-  left: -56px;
+  top: -73%;
+  left: 0px;
 }
 
 .logo span {
   text-transform: uppercase;
   font-family: "OpenSans Bold";
   font-weight: bold;
+  padding-top: 2px;
 }
-.nav_list {
-  padding-bottom: 28px;
-}
-.nav_list-item {
+
+.nav_list-item:last-child {
   position: relative;
+  padding-right: 25px;
 }
 .nav_list-item:last-child::before {
   content: "";
@@ -97,18 +109,116 @@ ul {
   background-image: url(../images/icons/icon_viber);
   background-repeat: no-repeat;
   background-position: center;
-  left: -24px;
+  right: 0%;
+  top: 47%;
 }
 .nav_list-item a {
   color: #000000;
   font-family: "OpenSans Bold";
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
+  line-height: 14px;
 }
 .nav_list-item a:hover,
 .nav_list-item a:focus {
   color: red;
   font-size: large;
+}
+.header {
+  /* box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1); */
+  z-index: 3;
+}
+.header ul {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: inherit;
+  overflow: hidden;
+}
+.header li {
+  padding-top: 20px;
+  padding-right: auto;
+}
+.header li a {
+  display: block;
+  padding: 2px 5px;
+  border: 1px solid #201f1f;
+  color: #535353;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-family: "OpenSans";
+}
+.header li a:hover,
+.header .menu-btn:hover {
+  background-color: #914c4c;
+  font-weight: bold;
+}
+
+/* menu */
+/* задаём параметры для списка навигации при гамбургере */
+.header .menu {
+  clear: both;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
+}
+
+/* обёртка гамбургера */
+.header .menu-icon {
+  display: flex;
+  border: 1px solid;
+  padding: 15px;
+  position: relative;
+  margin: 0 20px;
+  border-radius: 35px;
+  user-select: none;
+  cursor: pointer;
+}
+.header .menu-icon .navicon {
+  display: block;
+  background: #a30f0f;
+  width: 20px;
+  height: 2px;
+  position: relative;
+}
+.header .menu-icon .navicon::after,
+.header .menu-icon .navicon::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #a11f1f;
+  width: 100%;
+  height: 100%;
+}
+.header .menu-icon .navicon::before {
+  top: 5px;
+}
+.header .menu-icon .navicon::after {
+  top: -5px;
+}
+.header .menu-icon .navicon {
+  transition: background 0.2s ease-out;
+}
+.header .menu-btn:checked ~ .menu-icon .navicon {
+  background: transparent;
+}
+.header.menu-icon .navicon::before,
+.header .menu-icon .navicon::after {
+  transition: all 0.2s ease-out;
+}
+.header .menu-btn:checked ~ .menu {
+  max-height: 100%;
+}
+.header .menu-btn:checked ~ .menu-icon .navicon::before {
+  transform: rotate(-45deg);
+}
+.header .menu-btn:checked ~ .menu-icon .navicon::after {
+  transform: rotate(45deg);
+}
+.header .menu-btn:checked ~ .menu-icon .navicon::before,
+.header .menu-btn:checked ~ .menu-icon .navicon::after {
+  top: 0;
+}
+.header .menu-btn {
+  display: none;
 }
 
 /* стили секции 1 */
@@ -116,6 +226,7 @@ ul {
   display: flex;
   flex-flow: column;
   align-items: flex-start;
+  padding-top: 200px;
   color: #ffffff;
   background: #535353 url(../images/s1_back);
   /* добавляем формат наложения цвета на изображение */
@@ -168,15 +279,17 @@ ul {
   content: "/";
   position: absolute;
   font-size: 32px;
+  line-height: 14px;
   font-weight: bold;
   color: rgb(247, 223, 8);
 }
 .s1_bottom-element::before {
-  transform: rotate(-63deg);
+  transform: rotate(-57deg);
   left: -16px;
 }
 .s1_bottom-element::after {
-  transform: rotate(26deg);
+  transform: rotate(23deg);
+  left: 0px;
 }
 
 .s1_list-item {
@@ -199,6 +312,224 @@ ul {
 
 .s1_list-item span {
   color: rgb(236, 214, 15);
+}
+
+/* анимация для секции 1 */
+
+.drop {
+  background: rgba(255, 255, 245, 1);
+  border: 4px solid rgba(255, 245, 235, 1);
+  border-radius: 100%;
+  box-shadow: inset -0.1em 0 2em 0.5em rgba(255, 255, 255, 0.5),
+    inset -0.1em 0 0.5em 0 rgba(0, 0, 0, 0.8);
+  position: relative;
+  margin: 0 auto;
+  width: 10em;
+  height: 15em;
+  overflow: hidden;
+  margin-bottom: 60px;
+}
+.drop:before,
+.drop:after {
+  content: "";
+  display: block;
+  position: absolute;
+}
+
+/* Капля */
+
+.drop:before {
+  background: rgba(167, 217, 234, 1);
+  border-radius: 100%;
+  /* Начало капли */
+  box-shadow: 0 0 0 0.1em rgba(167, 217, 234, 0.8),
+    0 0 0 0.15em rgba(167, 217, 234, 0.8), 0 0 0 0.2em rgba(167, 227, 234, 0.8),
+    0 0 0 0.25em rgba(167, 227, 234, 0.8), 0 0 0 0.3em rgba(167, 227, 234, 0.8),
+    0 0 0 0.35em rgba(167, 227, 234, 0.8), 0 0 0 0.4em rgba(167, 227, 234, 0.8),
+    0 0 0 0.45em rgba(167, 227, 234, 0.8), 0 0 0 0.5em rgba(167, 227, 234, 0.8);
+  top: 0%;
+  left: 50%;
+  /*Ширина "width" и высота "height" деления должны быть меньше общего размера "box-shadow". Так мы сможем контролировать различные типы размеров. */
+  width: 0.2em;
+  height: 0.2em;
+  animation: fall 3.5s cubic-bezier(0.5, 0, 1, 0.5) infinite;
+}
+
+/* Поверхность */
+
+.drop:after {
+  background: rgb(52, 152, 219);
+  background: linear-gradient(
+    rgba(52, 255, 255, 1) 0%,
+    rgba(52, 152, 219, 1) 10%,
+    rgba(152, 252, 219, 1) 100%
+  );
+  border-radius: 100% 0 50% 0;
+  left: 0;
+  bottom: 0;
+  width: inherit;
+  height: 3em;
+  opacity: 0.7;
+  animation: surface 3s linear infinite;
+}
+
+/* Анимация капли */
+@keyframes fall {
+  /* Форма капли */
+  5%,
+  15% {
+    box-shadow: 0 -1.4em 0 0.1em rgba(167, 217, 234, 1),
+      0 -0.8em 0 0.15em rgba(167, 217, 234, 1),
+      0 -0.3em 0 0.2em rgba(167, 217, 234, 1),
+      0 -0.1em 0 0.25em rgba(167, 217, 234, 1),
+      0 0 0 0.3em rgba(167, 217, 234, 1),
+      0 0.2em 0 0.35em rgba(167, 217, 234, 1),
+      0 0.4em 0 0.4em rgba(167, 217, 234, 1),
+      0 0.6em 0 0.45em rgba(167, 217, 234, 1),
+      0 0.8em 0 0.5em rgba(167, 217, 234, 1);
+  }
+
+  /* Падение капли */
+  16% {
+    top: 80%;
+  }
+
+  /* Контакт с поверхностью */
+  18% {
+    top: 80%;
+    box-shadow: 1em -8em 0 0.2em rgba(177, 227, 234, 1),
+      -2.2em -3.8em 0 0.1em rgba(177, 227, 234, 1),
+      3em -2.85em 0 0.3em rgba(177, 227, 234, 1),
+      -3.5em -4em 0 0.2em rgba(177, 227, 234, 1),
+      0 0 0 0.3em rgba(177, 227, 234, 1),
+      2em -2em 0 0.2em rgba(177, 227, 234, 1),
+      -0.3em -3em 0 0.2em rgba(177, 227, 234, 1),
+      0.5em -5em 0 0.35em rgba(177, 227, 234, 1),
+      -3em -1em 0 0.3em rgba(177, 227, 234, 1);
+  }
+
+  /* Брызги */
+  30% {
+    top: 90%;
+    box-shadow: 1.5em 0 0 0.2em rgba(252, 252, 255, 0.1),
+      -2em 0 0 0.15em rgba(252, 252, 255, 0.1),
+      3em 0 0 0.2em rgba(252, 252, 255, 0.1),
+      -2em 0 0 0.25em rgba(252, 252, 255, 0.1),
+      0 0 0 0.2em rgba(252, 252, 255, 0.1),
+      2.35em 0 0 0.3em rgba(252, 252, 255, 0.1),
+      -0.5em 0 0 0.2em rgba(252, 252, 255, 0.1),
+      1em 0 0 0.3em rgba(252, 252, 255, 0.1),
+      -4em 0 0 0.4em rgba(252, 252, 255, 0.1);
+  }
+
+  /* Скрывание */
+  40%,
+  100% {
+    top: 95%;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 1.8em 0.5em 0 0.2em rgba(255, 255, 255, 0),
+      -3em 0.5em 0 0.1em rgba(255, 255, 255, 0),
+      4em 0.5em 0 0.1em rgba(255, 255, 255, 0),
+      -3.5em 0.5em 0 0.1em rgba(255, 255, 255, 0),
+      0 0 0 0.3em rgba(255, 255, 215, 0),
+      2.45em 0.5em 0 0.1em rgba(255, 255, 255, 0),
+      -0.8em 0.5em 0 0.2em rgba(255, 255, 255, 0),
+      1.5em 0.5em 0 0.3em rgba(255, 255, 255, 0),
+      -4.5em 0.5em 0 0.2em rgba(255, 255, 255, 0);
+  }
+}
+
+/* Анимация водной поверхности */
+@keyframes surface {
+  50% {
+    border-radius: 0 75% 0 75%;
+    opacity: 0.5;
+    height: 3.5em;
+  }
+}
+
+/* анимация для секции 2 */
+.loading {
+  background: rgba(0, 50, 250, 0);
+  position: relative;
+  margin: 5em auto 0 auto;
+  width: 3em;
+  height: 3em;
+  animation-name: rotate;
+}
+.loading,
+.loading:before,
+.loading:after {
+  border-radius: 100%;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+}
+.loading:before,
+.loading:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+}
+.loading:before {
+  background: rgba(200, 250, 100, 0);
+  animation-name: ring;
+}
+.loading:after {
+  background: rgba(250, 0, 200, 0);
+  animation-name: ring2;
+}
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg) scaleX(0.1) scaleY(0.1) translateZ(0);
+    box-shadow: inset 0.8em 0 0 rgba(255, 0, 0, 0.5),
+      inset 0 0.8em 0 rgba(252, 150, 0, 0.5),
+      inset -0.8em 0 0 rgba(0, 255, 0, 0.5),
+      inset 0 -0.8em 0 rgba(0, 150, 255, 0.5);
+  }
+  /* Скрыто */
+  85%,
+  100% {
+    /* 360 градусов х 10 */
+    transform: rotateZ(3600deg) scaleX(2.01) scaleY(2) translateZ(0);
+    box-shadow: inset 0 0 0 rgba(255, 0, 0, 0), inset 0 0 0 rgba(252, 150, 0, 0),
+      inset 0 0 0 rgba(0, 255, 0, 0), inset 0 0 0 rgba(0, 150, 255, 0);
+  }
+}
+@keyframes ring {
+  0% {
+    transform: scaleX(0.1) scaleY(0.5);
+    box-shadow: inset 0.8em 0 0 rgba(255, 0, 0, 0.5),
+      inset 0 0.8em 0 rgba(252, 150, 0, 0.5),
+      inset -0.8em 0 0 rgba(0, 255, 0, 0.5),
+      inset 0 -0.8em 0 rgba(0, 150, 255, 0.5);
+  }
+  /* Скрыто */
+  75%,
+  100% {
+    transform: scaleX(2) scaleY(2.1);
+    box-shadow: inset 0 0 0 rgba(255, 0, 0, 0), inset 0 0 0 rgba(252, 150, 0, 0),
+      inset 0 0 0 rgba(0, 255, 0, 0), inset 0 0 0 rgba(0, 150, 255, 0);
+  }
+}
+@keyframes ring2 {
+  0% {
+    transform: scaleX(0.5) scaleY(0.1);
+    box-shadow: inset 0.8em 0 0 rgba(255, 0, 0, 0.5),
+      inset 0 0.8em 0 rgba(252, 150, 0, 0.5),
+      inset -0.8em 0 0 rgba(0, 255, 0, 0.5),
+      inset 0 -0.8em 0 rgba(0, 150, 255, 0.5);
+  }
+  /* Скрыто */
+  65%,
+  100% {
+    transform: scaleX(2) scaleY(2.1);
+    box-shadow: inset 0 0 0 rgba(255, 0, 0, 0), inset 0 0 0 rgba(252, 150, 0, 0),
+      inset 0 0 0 rgba(0, 255, 0, 0), inset 0 0 0 rgba(0, 150, 255, 0);
+  }
 }
 
 /* стили секции 2 */
@@ -372,6 +703,28 @@ div.ant-carousel-arrow-right {
     no-repeat;
 }
 
+/* контейнер с точками слайдера */
+div.ant-carousel-dots {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  left: 0;
+  bottom: 64px;
+  z-index: 30;
+  text-align: center;
+}
+/* точки слайдера */
+span.ant-dot {
+  width: 10px;
+  height: 10px;
+  margin: 5px 7px;
+  padding: 0;
+  display: inline-block;
+  background-color: #bbb;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 /* стили секции 4 */
 .s4 {
   display: flex;
@@ -519,17 +872,276 @@ footer {
   padding: 25px 0;
 }
 
+/*кнопка звонка*/
+
+.callback-bt {
+  background: #38a3fd;
+  border: 2px solid #38a3fd;
+  border-radius: 50%;
+  box-shadow: 0 8px 10px rgba(56, 163, 253, 0.3);
+  cursor: pointer;
+  height: 68px;
+  text-align: center;
+  width: 68px;
+  position: fixed;
+  right: 8%;
+  bottom: 18%;
+  z-index: 999;
+  transition: 0.3s;
+  -webkit-animation: hoverWave linear 1s infinite;
+  animation: hoverWave linear 1s infinite;
+}
+
+.callback-bt .text-call {
+  height: 68px;
+  width: 68px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.callback-bt .text-call span {
+  text-align: center;
+  color: #38a3fd;
+  opacity: 0;
+  font-size: 0;
+  position: absolute;
+  right: 4px;
+  top: 22px;
+  line-height: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: opacity 0.3s linear;
+  font-family: "montserrat", Arial, Helvetica, sans-serif;
+}
+
+.callback-bt .text-call:hover span {
+  opacity: 1;
+  font-size: 11px;
+}
+.callback-bt:hover i {
+  display: none;
+}
+
+.callback-bt:hover {
+  z-index: 1;
+  background: #fff;
+  color: transparent;
+  transition: 0.3s;
+}
+.callback-bt:hover i {
+  color: #38a3fd;
+  font-size: 40px;
+  transition: 0.3s;
+}
+.callback-bt i {
+  color: #fff;
+  font-size: 34px;
+  transition: 0.3s;
+  line-height: 66px;
+  transition: 0.5s ease-in-out;
+}
+
+.callback-bt i {
+  animation: 1200ms ease 0s normal none 1 running shake;
+  animation-iteration-count: infinite;
+  -webkit-animation: 1200ms ease 0s normal none 1 running shake;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes hoverWave {
+  0% {
+    box-shadow: 0 8px 10px rgba(56, 163, 253, 0.3),
+      0 0 0 0 rgba(56, 163, 253, 0.2), 0 0 0 0 rgba(56, 163, 253, 0.2);
+  }
+  40% {
+    box-shadow: 0 8px 10px rgba(56, 163, 253, 0.3),
+      0 0 0 15px rgba(56, 163, 253, 0.2), 0 0 0 0 rgba(56, 163, 253, 0.2);
+  }
+  80% {
+    box-shadow: 0 8px 10px rgba(56, 163, 253, 0.3),
+      0 0 0 30px rgba(56, 163, 253, 0), 0 0 0 26.7px rgba(56, 163, 253, 0.067);
+  }
+  100% {
+    box-shadow: 0 8px 10px rgba(56, 163, 253, 0.3),
+      0 0 0 30px rgba(56, 163, 253, 0), 0 0 0 40px rgba(56, 163, 253, 0);
+  }
+}
+@keyframes hoverWave {
+  0% {
+    box-shadow: 0 8px 10px rgba(56, 163, 253, 0.3),
+      0 0 0 0 rgba(56, 163, 253, 0.2), 0 0 0 0 rgba(56, 163, 253, 0.2);
+  }
+  40% {
+    box-shadow: 0 8px 10px rgba(56, 163, 253, 0.3),
+      0 0 0 15px rgba(56, 163, 253, 0.2), 0 0 0 0 rgba(56, 163, 253, 0.2);
+  }
+  80% {
+    box-shadow: 0 8px 10px rgba(56, 163, 253, 0.3),
+      0 0 0 30px rgba(56, 163, 253, 0), 0 0 0 26.7px rgba(56, 163, 253, 0.067);
+  }
+  100% {
+    box-shadow: 0 8px 10px rgba(56, 163, 253, 0.3),
+      0 0 0 30px rgba(56, 163, 253, 0), 0 0 0 40px rgba(56, 163, 253, 0);
+  }
+}
+
+/* animations icon */
+
+@keyframes shake {
+  0% {
+    transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    -webkit-transform: rotateZ(0deg);
+  }
+  10% {
+    transform: rotateZ(-30deg);
+    -ms-transform: rotateZ(-30deg);
+    -webkit-transform: rotateZ(-30deg);
+  }
+  20% {
+    transform: rotateZ(15deg);
+    -ms-transform: rotateZ(15deg);
+    -webkit-transform: rotateZ(15deg);
+  }
+  30% {
+    transform: rotateZ(-10deg);
+    -ms-transform: rotateZ(-10deg);
+    -webkit-transform: rotateZ(-10deg);
+  }
+  40% {
+    transform: rotateZ(7.5deg);
+    -ms-transform: rotateZ(7.5deg);
+    -webkit-transform: rotateZ(7.5deg);
+  }
+  50% {
+    transform: rotateZ(-6deg);
+    -ms-transform: rotateZ(-6deg);
+    -webkit-transform: rotateZ(-6deg);
+  }
+  60% {
+    transform: rotateZ(5deg);
+    -ms-transform: rotateZ(5deg);
+    -webkit-transform: rotateZ(5deg);
+  }
+  70% {
+    transform: rotateZ(-4.28571deg);
+    -ms-transform: rotateZ(-4.28571deg);
+    -webkit-transform: rotateZ(-4.28571deg);
+  }
+  80% {
+    transform: rotateZ(3.75deg);
+    -ms-transform: rotateZ(3.75deg);
+    -webkit-transform: rotateZ(3.75deg);
+  }
+  90% {
+    transform: rotateZ(-3.33333deg);
+    -ms-transform: rotateZ(-3.33333deg);
+    -webkit-transform: rotateZ(-3.33333deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    -webkit-transform: rotateZ(0deg);
+  }
+}
+
+@-webkit-keyframes shake {
+  0% {
+    transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    -webkit-transform: rotateZ(0deg);
+  }
+  10% {
+    transform: rotateZ(-30deg);
+    -ms-transform: rotateZ(-30deg);
+    -webkit-transform: rotateZ(-30deg);
+  }
+  20% {
+    transform: rotateZ(15deg);
+    -ms-transform: rotateZ(15deg);
+    -webkit-transform: rotateZ(15deg);
+  }
+  30% {
+    transform: rotateZ(-10deg);
+    -ms-transform: rotateZ(-10deg);
+    -webkit-transform: rotateZ(-10deg);
+  }
+  40% {
+    transform: rotateZ(7.5deg);
+    -ms-transform: rotateZ(7.5deg);
+    -webkit-transform: rotateZ(7.5deg);
+  }
+  50% {
+    transform: rotateZ(-6deg);
+    -ms-transform: rotateZ(-6deg);
+    -webkit-transform: rotateZ(-6deg);
+  }
+  60% {
+    transform: rotateZ(5deg);
+    -ms-transform: rotateZ(5deg);
+    -webkit-transform: rotateZ(5deg);
+  }
+  70% {
+    transform: rotateZ(-4.28571deg);
+    -ms-transform: rotateZ(-4.28571deg);
+    -webkit-transform: rotateZ(-4.28571deg);
+  }
+  80% {
+    transform: rotateZ(3.75deg);
+    -ms-transform: rotateZ(3.75deg);
+    -webkit-transform: rotateZ(3.75deg);
+  }
+  90% {
+    transform: rotateZ(-3.33333deg);
+    -ms-transform: rotateZ(-3.33333deg);
+    -webkit-transform: rotateZ(-3.33333deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    -webkit-transform: rotateZ(0deg);
+  }
+}
+/* конец кнопки звонка */
+
 /* стили для TABLET */
 @media (min-width: 768px) {
   .container {
     min-width: 768px;
   }
+
   /* стили хэдэра */
+  .header .menu,
+  .header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  .header li a {
+    padding: 0 5px;
+    margin: 3px;
+  }
+  .header li {
+    display: flex;
+    padding: 0;
+  }
+  .header .menu {
+    clear: none;
+    width: -webkit-fill-available;
+    max-height: none;
+    padding-left: 20px;
+    justify-content: space-evenly;
+  }
   .header_nav {
     flex-flow: row;
     justify-content: space-between;
     margin: 0 40px;
     padding: 34px 0;
+    width: -webkit-fill-available;
+  }
+  .header .menu-icon {
+    display: none;
   }
   a {
     text-decoration: none;
@@ -540,11 +1152,10 @@ footer {
   }
 
   .logo {
-    padding: 0;
     padding-left: 55px;
   }
   .logo::before {
-    top: -12px;
+    top: -14px;
     left: 0px;
   }
   .nav_list {
@@ -564,6 +1175,13 @@ footer {
     height: 28px;
     top: -4px;
     right: 37px;
+  }
+  .nav_list-item:last-child {
+    padding-right: 20px;
+  }
+  .nav_list-item:last-child::before {
+    top: 1px;
+    left: 110px;
   }
 
   /* стили секции 1 */

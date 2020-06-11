@@ -7,15 +7,31 @@
     <title>BootCamp 1</title>
   </head>
   <body>
-    <header class="container">
-      <nav class="header_nav">
-        <a class="logo" href="#">мебель<span>ремсервис</span></a>
-        <ul class="nav_list">
-          <li class="nav_list-item"><a href="#">+380686044626</a></li>
-          <li class="nav_list-item"><a href="#">+380689540699</a></li>
-        </ul>
-      </nav>
-    </header>
+    <div class="header_wrapper">
+      <header class="header container">
+        <nav class="header_nav">
+          <a class="logo" href="#">мебель<span>ремсервис</span></a>
+
+          <!-- элемент, срабатывающий на нажатие -->
+          <input class="menu-btn" type="checkbox" id="menu-btn" />
+          <!-- элементы для создания внешнего вида гамбургера -->
+          <label class="menu-icon" for="menu-btn"
+            ><span class="navicon"></span
+          ></label>
+
+          <ul class="menu">
+            <li><a href="#info">info</a></li>
+            <li><a href="#gifts">gifts</a></li>
+            <li><a href="#about">line</a></li>
+            <li><a href="#careers">line</a></li>
+            <li><a href="#contact">line</a></li>
+            <li><a href="#contact">line</a></li>
+            <li class="nav_list-item"><a href="#">+380686044626</a></li>
+            <li class="nav_list-item"><a href="#">+380689540699</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
     <main class="container">
       <section class="s1">
         <h2 class="s1_title">ремонт мебели</h2>
@@ -28,9 +44,13 @@
             использование <span>натуральных</span> материалов
           </li>
         </ul>
+        <!-- элемент анимации с падающей каплей -->
+        <div class="drop"></div>
         <div class="s1_bottom-element"></div>
       </section>
       <section class="s2">
+        <!-- aнимированный элемент загрузки -->
+        <div class="loading"></div>
         <h2 class="s2_title">Ремонт и реставрация мягкой мебели</h2>
         <ul class="s2_list">
           <li class="s2_list-item">
@@ -141,6 +161,14 @@
     </main>
     <footer class="container">
       <p>&copy; 2020 | Копирование материалов строго запрещено</p>
+      <div type="button" class="callback-bt">
+        <div class="text-call">
+          <i class="fa fa-phone"></i>
+          <span>Заказать<br />звонок</span>
+        </div>
+      </div>
     </footer>
+    <script src="index.js" type="module"></script>
+    <script src="slider.js" type="module"></script>
   </body>
 </html>
