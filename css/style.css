@@ -94,7 +94,6 @@ ul {
   text-transform: uppercase;
   font-family: "OpenSans Bold";
   font-weight: bold;
-  padding-top: 2px;
 }
 
 .nav_list-item:last-child {
@@ -289,7 +288,7 @@ ul {
 }
 .s1_bottom-element::after {
   transform: rotate(23deg);
-  left: 0px;
+  left: -2px;
 }
 
 .s1_list-item {
@@ -859,7 +858,7 @@ span.ant-dot {
   padding-left: 35px;
 }
 .contacts li:last-child p {
-  padding-left: 45px;
+  padding-left: 29px;
 }
 
 /* стили футера */
